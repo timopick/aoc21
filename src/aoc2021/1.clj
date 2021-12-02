@@ -20,7 +20,8 @@
    (rest input)))
  
 ; reduce the ones in the result with + 
-(reduce + (increased? input))
+(defn solve_day1 []
+  (reduce + (increased? input)))
 
 ; part 2
 
@@ -32,4 +33,11 @@
   (rest (rest input))))
 
 ; compare them to each other
-(reduce + (increased? sums))
+(defn solve_day1_pt2 []
+  (reduce + (increased? sums)))
+
+(defn run [] 
+  (println "Day 1 #1: " (solve_day1))
+  (println "Day 1 #2: " (solve_day1_pt2)))
+
+(run)

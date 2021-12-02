@@ -1,6 +1,7 @@
 (ns aoc2021.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(require 'aoc2021.1)
+
+(defn -main
+  [& args]
+  )
