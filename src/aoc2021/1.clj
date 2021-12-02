@@ -12,11 +12,24 @@
 )
 
 ; map and compare each element with the next, return 1 if value has increased 
-(def increases (map
- (fn [a b]
-   (if (> a b) 0 1))
- input
- (rest input)))
+(defn increased? [input]
+  (map
+   (fn [a b]
+     (if (> a b) 0 1))
+   input
+   (rest input)))
  
 ; reduce the ones in the result with + 
-(reduce + increases)
+(reduce + (increased? input))
+
+; part 2
+
+; add 3 consecutive elements 
+(def sums (map (fn [a b c] 
+  (+ a b c))
+  input
+  (rest input)
+  (rest (rest input))))
+
+; compare them to each other
+(reduce + (increased? sums))
