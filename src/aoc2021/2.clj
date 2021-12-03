@@ -15,10 +15,11 @@
       ["up" i] [x (- y i)]
       ["down" i] [x (+ y i)])))
 
-(defn solve_day2 []
+(defn solve_part1 []
   (reduce *
     (reduce reducefn [0 0] input)))
 
-(println "Day 2 #1: " (solve_day2))
+(println "Day 2 #1: " (solve_part1))
 
 ; part 2
+
