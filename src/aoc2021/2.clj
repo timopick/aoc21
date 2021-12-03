@@ -15,8 +15,10 @@
       ["up" i] [x (- y i)]
       ["down" i] [x (+ y i)])))
 
-(reduce *
-    (reduce reducefn [0 0] input)
-)
+(defn solve_day2 []
+  (reduce *
+    (reduce reducefn [0 0] input)))
+
+(println "Day 2 #1: " (solve_day2))
 
 ; part 2

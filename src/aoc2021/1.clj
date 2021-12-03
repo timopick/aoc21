@@ -36,8 +36,5 @@
 (defn solve_day1_pt2 []
   (reduce + (increased? sums)))
 
-(defn run [] 
-  (println "Day 1 #1: " (solve_day1))
-  (println "Day 1 #2: " (solve_day1_pt2)))
-
-(run)
+(println "Day 1 #1: " (solve_day1))
+(println "Day 1 #2: " (solve_day1_pt2))
