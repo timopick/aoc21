@@ -5,5 +5,4 @@
 (require 'aoc2021.3)
 
 (defn -main
-  [& args]
-  )
+  [& args])

@@ -17,7 +17,7 @@
 
 (defn solve_part1 []
   (reduce *
-    (reduce calc_position [0 0] input)))
+          (reduce calc_position [0 0] input)))
 
 (println "Day 2 #1: " (solve_part1))
 
