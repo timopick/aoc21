@@ -21,6 +21,8 @@
 (defn solve_part1 []
   (reduce + (increased? input)))
 
+(println "Day 1 #1: " (solve_part1))
+
 ; part 2
 
 ; add 3 consecutive elements 
@@ -34,5 +36,4 @@
 (defn solve_part2 []
   (reduce + (increased? sums)))
 
-(println "Day 1 #1: " (solve_part1))
 (println "Day 1 #2: " (solve_part2))
