@@ -3,25 +3,7 @@
 (require '[clojure.string :as str])
 (require '[clojure.java.io :as io])
 
-;  {:random [7 4 9 5 11 17 23]
-;   :boards [[22 13 17 11 0
-;              8 2 23 4 24
-;              21 9 14 16 7
-;              6 10 3 18 5
-;              1 12 20 15 19]]}
-(defn parse-input [input]
-  (let [lines [str/split-lines input]]
-    {:random (str/split (first (lines)) #",")
-     :boards (reduce
-              (fn [coll line]
-                (if (empty? line)
-                  coll
-                  (conj coll line)))
-              []
-              (rest lines))}))
-
-(def example-input
-  (parse-input "7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
+(def example-input "7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
 
 22 13 17 11  0
  8  2 23  4 24
@@ -40,4 +22,51 @@
 18  8 23 26 20
 22 11 13  6  5
  2  0 12  3  7
-"))
+")
+
+(defn parse-board [input]
+  (reduce
+   (fn [coll, line]
+     (->>
+      (str/split line #"[\s]+")
+      (filter not-empty)
+      (map (fn [x] [x false]))
+      (conj coll)))
+   []
+   input))
+
+(defn parse-input [input]
+  (let [blocks (str/split input #"\n\n")]
+    {:numbers (str/split (first blocks) #",")
+     :boards (->>
+              (rest blocks)
+              (map #(str/split % #"\n"))
+              (map parse-board))}))
+
+(def game-data (parse-input example-input))
+
+(defn mark-number [board num]
+  (for [row board]
+    (map (fn [val] [val (= val num)]) row)))
+
+(comment
+  (def example-board '[("22" "13" "17" "11" "0")
+                       ("8" "2" "23" "4" "24")
+                       ("21" "9" "14" "16" "7")
+                       ("6" "10" "3" "18" "5")
+                       ("1" "12" "20" "15" "19")])
+  (mark-number example-board "22"))
+
+(defn next-draw [boards next-num]
+  (map #(mark-number % next-num) boards))
+
+(next-draw (get game-data :boards) "7")
+
+(defn play [game-data]
+  (reduce
+   next-draw
+   (get game-data :boards)
+   (get game-data :numbers)))
+
+(play game-data)
+
